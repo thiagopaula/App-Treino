@@ -15,6 +15,8 @@
           Nome App
         </q-toolbar-title>
 
+        <dark-mode-toogle />
+
         <q-btn-dropdown flat color="white" icon="person">
           <q-list>
             <q-item clickable v-close-popup @click="handleLogout">
@@ -47,8 +49,16 @@
       </q-list>
     </q-drawer>
 
-    <q-page-container class="body-page-conatiner">
-      <router-view />
+    <q-page-container>
+      <router-view v-slot="{ Component }">
+        <transition
+          appear
+          enter-active-class="animated fadeInUp"
+          leave-active-class="animated fadeOutDown"
+        >
+          <component :is="Component" />
+        </transition>
+      </router-view>
     </q-page-container>
   </q-layout>
 </template>
@@ -56,6 +66,7 @@
 <script>
 import { defineComponent, ref } from 'vue'
 import EssentialLink from 'components/EssentialLink.vue'
+import DarkModeToogle from 'components/DarkModeToggle.vue'
 
 const linksList = [
   {
@@ -67,7 +78,7 @@ const linksList = [
   {
     title: 'Treino',
     caption: '',
-    icon: 'school',
+    icon: 'mdi-weight-lifter',
     routeName: 'treino'
   }
 ]
@@ -76,7 +87,8 @@ export default defineComponent({
   name: 'MainLayout',
 
   components: {
-    EssentialLink
+    EssentialLink,
+    DarkModeToogle
   },
 
   setup () {
@@ -92,6 +104,3 @@ export default defineComponent({
   }
 })
 </script>
-<style lang="scss">
-
-</style>
