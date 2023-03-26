@@ -15,7 +15,7 @@
           Nome App
         </q-toolbar-title>
 
-        <dark-mode-toogle true />
+        <dark-mode-toogle />
 
         <q-btn-dropdown flat color="white" icon="person">
           <q-list>

@@ -14,6 +14,16 @@ register(process.env.SERVICE_WORKER_FILE, {
 
   ready (/* registration */) {
     // console.log('Service worker is active.')
+
+    Notify.create({
+      message: 'Gostaria de instalar o app',
+      icon: 'mdi-cloud-download-outline',
+      closeBtn: 'Instalar',
+      timeout: 10000,
+      onDismiss () {
+        location.reload(true)
+      }
+    })
   },
 
   registered (/* registration */) {
