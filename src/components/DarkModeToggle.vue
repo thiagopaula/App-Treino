@@ -1,9 +1,3 @@
-<template>
-  <q-toggle
-    v-model="darkMode"
-  />
-</template>
-
 <script>
 import { defineComponent, ref, watch, onMounted } from 'vue'
 import { useQuasar } from 'quasar'
