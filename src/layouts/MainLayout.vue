@@ -47,7 +47,7 @@
       </q-list>
     </q-drawer>
 
-    <q-page-container>
+    <q-page-container class="body-page-conatiner">
       <router-view />
     </q-page-container>
   </q-layout>
@@ -58,6 +58,12 @@ import { defineComponent, ref } from 'vue'
 import EssentialLink from 'components/EssentialLink.vue'
 
 const linksList = [
+  {
+    title: 'Home',
+    caption: '',
+    icon: 'mdi-home',
+    routeName: 'home'
+  },
   {
     title: 'Treino',
     caption: '',
@@ -86,3 +92,5 @@ export default defineComponent({
   }
 })
 </script>
+<style lang="scss">
+</style>
