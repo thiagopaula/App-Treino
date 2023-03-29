@@ -12,7 +12,7 @@ export default defineComponent({
       $q.localStorage.set('darkMode', darkMode)
       const darkModeIsActive = $q.localStorage.getItem('darkMode')
       if (darkModeIsActive) {
-        darkMode.value = false
+        darkMode.value = true
       }
     })
 

@@ -64,7 +64,6 @@
 </template>
 
 <script>
-import { defineComponent, ref } from 'vue'
 import EssentialLink from 'components/EssentialLink.vue'
 import DarkModeToogle from 'components/DarkModeToggle.vue'
 
@@ -78,10 +77,16 @@ const linksList = [
   {
     title: 'Treino',
     caption: '',
-    icon: 'mdi-weight-lifter',
+    icon: 'mdi-shape-outline',
     routeName: 'treino'
   }
 ]
+
+import { defineComponent, ref, onMounted } from 'vue'
+import useAuthUser from 'src/composables/UseAuthUser'
+import useApi from 'src/composables/UseApi'
+import { useRouter } from 'vue-router'
+import { useQuasar } from 'quasar'
 
 export default defineComponent({
   name: 'MainLayout',
@@ -94,12 +99,34 @@ export default defineComponent({
   setup () {
     const leftDrawerOpen = ref(false)
 
+    const $q = useQuasar()
+    const router = useRouter()
+    const { logout } = useAuthUser()
+    //const { getBrand } = useApi()
+
+    onMounted(() => {
+      //getBrand()
+    })
+
+    const handleLogout = async () => {
+      $q.dialog({
+        title: 'Logout',
+        message: 'Deseja realmente sair ?',
+        cancel: true,
+        persistent: true
+      }).onOk(async () => {
+        await logout()
+        router.replace({ name: 'login' })
+      })
+    }
+
     return {
       essentialLinks: linksList,
       leftDrawerOpen,
       toggleLeftDrawer () {
         leftDrawerOpen.value = !leftDrawerOpen.value
-      }
+      },
+      handleLogout
     }
   }
 })

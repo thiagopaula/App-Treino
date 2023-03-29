@@ -1,7 +1,6 @@
 import { register } from 'register-service-worker'
-import { Notify, useQuasar } from 'quasar'
+import { Notify } from 'quasar'
 
-const $q = useQuasar()
 // The ready(), registered(), cached(), updatefound() and updated()
 // events passes a ServiceWorkerRegistration instance in their arguments.
 // ServiceWorkerRegistration: https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerRegistration
@@ -19,12 +18,6 @@ register(process.env.SERVICE_WORKER_FILE, {
 
   registered (/* registration */) {
     // console.log('Service worker has been registered.')
-    $q.dialog({
-      dark: true,
-      title: 'Instalar',
-      message: 'Instalar o app-treino'
-    }).onOk(() => {
-    })
   },
 
   cached (/* registration */) {
@@ -37,7 +30,6 @@ register(process.env.SERVICE_WORKER_FILE, {
 
   updated (/* registration */) {
     // console.log('New content is available; please refresh.')
-
     Notify.create({
       message: 'Nova atualização disponível',
       icon: 'mdi-cloud-download-outline',
